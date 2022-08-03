@@ -1,0 +1,30 @@
+#! /bin/csh
+
+set subjs = `cat ./subj_list/use_list.txt`
+set fpreppath = /home/kabush/singularity_images/fmriprep-20.2.1.simg 
+set inpath = /home/kabush/workspace/bids/rPEP
+set outpath = /home/kabush/workspace/data/rPEP/derivatives
+set licensepath = /home/kabush/licenses/fsl_license.txt
+set workpath = /home/kabush/workspace/work
+
+foreach subj (${subjs})
+    
+    singularity run --cleanenv ${fpreppath} \
+    ${inpath} ${outpath} \
+    participant \
+    --participant_label sub-$subj \
+    --fs-license-file ${licensepath} \
+    --fs-no-reconall \
+    --nthreads 16 \
+    -w ${workpath} \
+    --output-spaces MNI152NLin2009cAsym:res-native
+
+end
+
+## ----------------------------------------
+## *** TICKET *** may want to preprocess in native space
+## and then resample post-processing to same face for
+## gm-mask, etc.
+##
+## Flag forces native functional resolution (3x3x3 or 2.4x2.4x2.4)
+##    --output-spaces MNI152NLin2009cAsym:res-native 

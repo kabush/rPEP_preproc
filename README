@@ -1,0 +1,95 @@
+# ========================================
+# ========================================
+# Keith Bush, PhD (2021)
+# Univ. of Arkansas for Medical Sciences
+# Brain Imaging Research Center (BIRC)
+# ========================================
+# ========================================
+
+# ----------------------------------------
+# ----------------------------------------
+    OVERVIEW: 
+# ----------------------------------------
+# ----------------------------------------
+
+Runs minimal preprocessing and group-level gray-matter masking
+for the study "Real-time fMRI and Neurofeedback of Brain Networks
+Mediating Trauma Memory Recall in PTD"
+
+# ----------------------------------------
+# ----------------------------------------
+    DATA SOURCES:
+# ----------------------------------------
+# ----------------------------------------
+
+BIDS formatted dataset.  See https://github.com/kabush/rPEP2bids
+
+# ----------------------------------------
+# ----------------------------------------
+    PROJECT OVERVIEW:
+# ----------------------------------------
+# ----------------------------------------
+
+/rPEP
+    run_project.py # the main script which sequentially
+    		   # calls all supporting scripts.  If the
+	      	   # project executes correctly then the 
+	      	   # log directory will contain a textual
+	      	   # description of all important statistical
+	      	   # findings and the fig directroy will contain
+	      	   # all important figures.  Intermediate data
+	      	   # will be stored at the path location specified
+	      	   # by /source/params.py
+
+    /log
+        # where pipeline execution logifles are store
+
+    /source
+	params.py
+	clean.py
+
+	/process
+	    # processing scripts for all data types
+	/tools
+	    # data management tools (e.g., load_subjs)
+
+    /subj_lists
+        # stores text files listing the included
+	# subjects for each study being used in
+	# this project analysis
+
+# ----------------------------------------
+# ----------------------------------------
+    REQUIRED TOOLS
+# ----------------------------------------
+# ----------------------------------------
+
+python3
+
+# ----------------------------------------
+# ----------------------------------------
+    REQUIRED LIBRARIES
+# ----------------------------------------
+# ----------------------------------------
+
+logging
+os
+nibabel
+nilearn
+matplotlib
+numpy
+scipy
+pandas
+json
+
+# ----------------------------------------
+# ----------------------------------------
+    To Run fmriprep
+# ----------------------------------------
+# ----------------------------------------
+
+# Preps the data directories
+./run_setup
+
+# Runs base preprocessing of project
+sudo ./run_fmriprep_sing

@@ -1,0 +1,5 @@
+#! /bin/csh
+
+rm -rf /home/kabush/workspace/data/rPEP
+mkdir /home/kabush/workspace/data/rPEP
+mkdir /home/kabush/workspace/data/rPEP/derivatives
